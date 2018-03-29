@@ -1,7 +1,7 @@
 resource "google_dns_record_set" "ops-manager-dns-internal" {
   count          = "${var.opsman_external_ip != "" ? 0 : 1}"
 
-  name = "opsman.${var.dns_suffix}."
+  name = "pcf.${var.dns_suffix}."
   type = "A"
   ttl  = 300
 
@@ -13,7 +13,7 @@ resource "google_dns_record_set" "ops-manager-dns-internal" {
 resource "google_dns_record_set" "ops-manager-dns-external" {
   count          = "${var.opsman_external_ip != "" ? 1 : 0}"
 
-  name = "opsman.${var.dns_suffix}."
+  name = "pcf.${var.dns_suffix}."
   type = "A"
   ttl  = 30
 
@@ -59,7 +59,7 @@ resource "google_dns_record_set" "doppler-dns" {
 
   managed_zone = "${var.dns_zone_name}"
 
-  rrdatas = ["${google_compute_address.cf-wss.address}"]
+  rrdatas = ["${google_compute_address.cf-ws.address}"]
 }
 
 resource "google_dns_record_set" "loggregator-dns" {
@@ -69,7 +69,7 @@ resource "google_dns_record_set" "loggregator-dns" {
 
   managed_zone = "${var.dns_zone_name}"
 
-  rrdatas = ["${google_compute_address.cf-wss.address}"]
+  rrdatas = ["${google_compute_address.cf-ws.address}"]
 }
 
 resource "google_dns_record_set" "tcp-dns" {

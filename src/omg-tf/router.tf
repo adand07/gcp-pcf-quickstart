@@ -155,8 +155,8 @@ resource "google_compute_forwarding_rule" "cf-ssh" {
  * Web Socket LB *
  *****************/
 
-resource "google_compute_firewall" "cf-wss" {
-  name    = "${var.env_name}-cf-wss"
+resource "google_compute_firewall" "cf-ws" {
+  name    = "${var.env_name}-cf-ws"
   network = "${google_compute_network.pcf-network.name}"
 
   allow {
@@ -165,22 +165,22 @@ resource "google_compute_firewall" "cf-wss" {
   }
 
   source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["${var.env_name}-cf-wss"]
+  target_tags   = ["${var.env_name}-cf-ws"]
 }
 
-resource "google_compute_address" "cf-wss" {
-  name = "${var.env_name}-cf-wss"
+resource "google_compute_address" "cf-ws" {
+  name = "${var.env_name}-cf-ws"
 }
 
-resource "google_compute_target_pool" "cf-wss" {
-  name             = "${var.env_name}-cf-wss"
+resource "google_compute_target_pool" "cf-ws" {
+  name             = "${var.env_name}-cf-ws"
   session_affinity = "NONE"
 }
 
-resource "google_compute_forwarding_rule" "cf-wss" {
-  name        = "${var.env_name}-cf-wss"
-  target      = "${google_compute_target_pool.cf-wss.self_link}"
+resource "google_compute_forwarding_rule" "cf-ws" {
+  name        = "${var.env_name}-cf-ws"
+  target      = "${google_compute_target_pool.cf-ws.self_link}"
   port_range  = "443-443"
   ip_protocol = "TCP"
-  ip_address  = "${google_compute_address.cf-wss.address}"
+  ip_address  = "${google_compute_address.cf-ws.address}"
 }

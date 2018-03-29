@@ -18,7 +18,7 @@ resource "google_compute_firewall" "cf-internal" {
   source_ranges = [
     "${google_compute_subnetwork.management-subnet.ip_cidr_range}",
     "${google_compute_subnetwork.unmanaged-subnet.ip_cidr_range}",
-    "${google_compute_subnetwork.ert-subnet.ip_cidr_range}",
+    "${google_compute_subnetwork.pas-subnet.ip_cidr_range}",
     "${google_compute_subnetwork.services-subnet.ip_cidr_range}",
     "${google_compute_subnetwork.dynamic-services-subnet.ip_cidr_range}",
   ]

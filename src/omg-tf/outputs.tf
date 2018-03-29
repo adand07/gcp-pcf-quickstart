@@ -1,5 +1,5 @@
 output "ops_manager_dns" {
-  value = "opsman.${var.dns_suffix}"
+  value = "pcf.${var.dns_suffix}"
 }
 
 output "ops_manager_instance_name" {
@@ -79,15 +79,15 @@ output "opsman_sql_db_name" {
 }
 
 output "ert_subnet_gateway" {
-  value = "${google_compute_subnetwork.ert-subnet.gateway_address}"
+  value = "${google_compute_subnetwork.pas-subnet.gateway_address}"
 }
 
 output "ert_subnet_cidrs" {
-  value = ["${google_compute_subnetwork.ert-subnet.ip_cidr_range}"]
+  value = ["${google_compute_subnetwork.pas-subnet.ip_cidr_range}"]
 }
 
 output "ert_subnet_name" {
-  value = "${google_compute_subnetwork.ert-subnet.name}"
+  value = "${google_compute_subnetwork.pas-subnet.name}"
 }
 
 output "services_subnet_gateway" {
@@ -127,7 +127,7 @@ output "ssh_router_pool" {
 }
 
 output "wss_router_pool" {
-  value = "${google_compute_target_pool.cf-wss.name}"
+  value = "${google_compute_target_pool.cf-ws.name}"
 }
 
 output "tcp_router_pool" {
