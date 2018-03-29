@@ -1,5 +1,5 @@
 output "ops_manager_dns" {
-  value = "pcf.${var.dns_suffix}"
+  value = "${google_dns_record_set.ops-manager-dns-external.name}"
 }
 
 output "ops_manager_instance_name" {
